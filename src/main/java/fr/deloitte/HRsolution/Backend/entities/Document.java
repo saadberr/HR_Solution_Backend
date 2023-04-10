@@ -21,4 +21,7 @@ public class Document {
     @Column(columnDefinition="BLOB")
     private byte[] data;
 
+    @ManyToOne
+    private Candidat candidat;
+
 }

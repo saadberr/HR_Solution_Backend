@@ -1,17 +1,16 @@
 package fr.deloitte.HRsolution.Backend.entities;
 
-import fr.deloitte.HRsolution.Backend.enums.Genre;
-import fr.deloitte.HRsolution.Backend.enums.Practice;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-
+import java.util.List;
 @Entity
 @Table(name = "CANDIDAT")
-@Data @AllArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor
 public class Candidat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,30 +18,38 @@ public class Candidat {
 
     private String nom;
     private String prenom;
-    private Long telephone;
+    private String telephone;
     private String email;
     private String pays;
     private String nationalite;
-
-    @Enumerated(EnumType.STRING)
-    private Genre genre;
+    private String genre;
 
     private String ecole;
     private String diplome;
-    private Long anneeDiplome;
-    private String eActuelle;
+    private int anneeDiplome;
+    private String entActuelle;
     private String grade;
-
-    @Enumerated(EnumType.STRING)
     private String experience;
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private Date dateSourcing;
-
-    @Enumerated(EnumType.STRING)
     private String source;
+    private String practice;
+    private String specialite;
 
-    @Enumerated(EnumType.STRING)
-    private Practice practice;
+    @ManyToOne
+    private Staff staff;
+
+    @OneToMany(targetEntity = StatutCandidat.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "candidat_id", referencedColumnName = "id")
+    private List<StatutCandidat> statuts;
+
+    @OneToMany(mappedBy = "candidat")
+    private List<Document> documents;
+
+    @OneToMany(targetEntity = Prequal.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "candidat_id", referencedColumnName = "id")
+    private List<Prequal> prequals;
+
 
 }
