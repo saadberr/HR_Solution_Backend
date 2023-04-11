@@ -37,7 +37,7 @@ public class Candidat {
     private String practice;
     private String specialite;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Staff.class)
     private Staff staff;
 
     @OneToMany(targetEntity = StatutCandidat.class, cascade = CascadeType.ALL)
