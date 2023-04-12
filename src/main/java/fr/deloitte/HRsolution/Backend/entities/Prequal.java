@@ -22,13 +22,21 @@ public class Prequal {
     private String commentaire;
     private String niveauFR;
     private String niveauEN;
-
     private int SAnet;
     private int PSnet;
-
     private String preavis;
     private String avisRH;
     private String resultatPrequal;
+
+    // Package/Avantages
+    private int primeAnnuelle;
+    private int primeProjet;
+    private String autrePrimes;
+    private String cimr;
+    private String assurance;
+    private String congesAnnuelles;
+    private String modeTravail;
+    private String contrat;
 
     public Prequal(Date datePrequal, String commentaire, String niveauFR, String niveauEN, String resultatPrequal){
         this.datePrequal = datePrequal;
@@ -37,9 +45,6 @@ public class Prequal {
         this.niveauEN = niveauEN;
         this.resultatPrequal = resultatPrequal;
     }
-
-    //@OneToOne(mappedBy = "prequal")
-    //private PackageAvantage avantage;
 
     /*
     @ManyToOne
