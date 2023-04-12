@@ -23,5 +23,4 @@ public class CandidatService {
         candiatRepository.saveAll(candidats);
 
     }
-
 }
