@@ -23,9 +23,6 @@ public class Staff {
     @OneToMany(mappedBy = "staff")
     private List<Candidat> candidats;
      */
-    @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL)
-    private List<Candidat> candidats;
-
 
     public Staff(Long id, String nom, String prenom, String grade) {
         this.id = id;
@@ -66,13 +63,6 @@ public class Staff {
         this.grade = grade;
     }
 
-    public List<Candidat> getCandidats() {
-        return candidats;
-    }
-
-    public void setCandidats(List<Candidat> candidats) {
-        this.candidats = candidats;
-    }
 
     @Override
     public boolean equals(Object o) {
