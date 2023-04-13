@@ -2,12 +2,13 @@ package fr.deloitte.HRsolution.Backend.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "DOCUMENT")
-@Data @AllArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor
 public class Document {
 
     @Id
@@ -20,8 +21,4 @@ public class Document {
     @Lob
     @Column(columnDefinition="BLOB")
     private byte[] data;
-
-    @ManyToOne
-    private Candidat candidat;
-
 }

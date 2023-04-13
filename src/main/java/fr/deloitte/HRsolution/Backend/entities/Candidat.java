@@ -47,13 +47,13 @@ public class Candidat {
     @JoinColumn(name = "candidat_id", referencedColumnName = "id")
     private List<StatutCandidat> statuts;
 
-    @OneToMany(mappedBy = "candidat")
+    @OneToMany(targetEntity = Document.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "candidat_id", referencedColumnName = "id")
     private List<Document> documents;
 
     @OneToMany(targetEntity = Prequal.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "candidat_id", referencedColumnName = "id")
     private List<Prequal> prequals;
-
 
 
 }
