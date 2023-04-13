@@ -22,8 +22,8 @@ public class Prequal {
     private String commentaire;
     private String niveauFR;
     private String niveauEN;
-    private int SAnet;
-    private int PSnet;
+    private int sanet;
+    private int psnet;
     private String preavis;
     private String avisRH;
     private String resultatPrequal;
@@ -36,6 +36,7 @@ public class Prequal {
     private String assurance;
     private String congesAnnuelles;
     private String modeTravail;
+    private String modeSouhaite;
     private String contrat;
 
     public Prequal(Date datePrequal, String commentaire, String niveauFR, String niveauEN, String resultatPrequal){
