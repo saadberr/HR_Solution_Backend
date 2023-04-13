@@ -1,5 +1,6 @@
 package fr.deloitte.HRsolution.Backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ public class Prequal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private Date datePrequal;
     @Column(columnDefinition = "TEXT")
@@ -46,14 +48,6 @@ public class Prequal {
         this.niveauEN = niveauEN;
         this.resultatPrequal = resultatPrequal;
     }
-
-    /*
-    @ManyToOne
-    private Candidat candidat;
-
-     */
-
-
 
 
 }

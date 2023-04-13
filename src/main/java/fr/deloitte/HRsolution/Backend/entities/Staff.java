@@ -20,6 +20,7 @@ public class Staff {
     private String grade;
 
     /*
+
     @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL)
     private List<Candidat> candidats;
     */

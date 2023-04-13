@@ -55,26 +55,5 @@ public class Candidat {
     @JoinColumn(name = "candidat_id", referencedColumnName = "id")
     private List<Prequal> prequals;
 
-    @Override
-    public String toString() {
-        return "Candidat{" +
-                "nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", email='" + email + '\'' +
-                ", pays='" + pays + '\'' +
-                ", nationalite='" + nationalite + '\'' +
-                ", genre='" + genre + '\'' +
-                ", ecole='" + ecole + '\'' +
-                ", diplome='" + diplome + '\'' +
-                ", anneeDiplome=" + anneeDiplome +
-                ", entActuelle='" + entActuelle + '\'' +
-                ", grade='" + grade + '\'' +
-                ", experience='" + experience + '\'' +
-                ", dateSourcing=" + dateSourcing +
-                ", source='" + source + '\'' +
-                ", practice='" + practice + '\'' +
-                ", specialite='" + specialite + '\'' +
-                '}';
-    }
+
 }
