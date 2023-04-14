@@ -31,7 +31,7 @@ public class PrequalController {
     public List<Prequal> listPrequals(){
             return prequalRepository.findAll();
     }
-    @PostMapping(path = "/ajouterprequal/{id}")
+    @PutMapping(path = "/ajouterprequal/{id}")
     public ResponseEntity<Prequal> createprequal(@PathVariable(name = "id") Long id, @RequestBody Prequal newprequal){
         Optional<Candidat> optionalCandidate = candidatRepository.findById(id);
         Candidat candidat = optionalCandidate.get();
