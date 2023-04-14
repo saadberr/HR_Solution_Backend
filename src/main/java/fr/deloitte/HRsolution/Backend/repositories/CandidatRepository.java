@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface CandidatRepository extends JpaRepository<Candidat, Long> {
 
-    @Query("SELECT new fr.deloitte.HRsolution.Backend.dto.ListeResponse(c.id, c.prenom, c.nom, c.email, c.telephone, c.pays, c.practice, c.specialite, c.grade, c.experience, c.source, c.dateSourcing, latestStatus.statut, latestStatus.dateStatut) FROM Candidat c JOIN c.statuts latestStatus WHERE latestStatus.dateStatut = (SELECT MAX(s.dateStatut) FROM c.statuts s)")
+    @Query("SELECT new fr.deloitte.HRsolution.Backend.dto.ListeResponse(c.id, c.prenom, c.nom, c.email, c.telephone, c.pays, c.practice, c.specialite, c.grade, c.experience, c.source, c.dateSourcing, latestStatus.statut, latestStatus.dateStatut) FROM Candidat c JOIN c.statuts latestStatus WHERE latestStatus.dateStatut = (SELECT MAX(s.dateStatut) FROM c.statuts s)  order by c.id asc ")
     public List<ListeResponse> getListe();
 
     @Query("SELECT new fr.deloitte.HRsolution.Backend.dto.ListeResponse(c.id, c.prenom, c.nom, c.email, c.telephone, c.pays, c.practice, c.specialite, c.grade, c.experience, c.source, c.dateSourcing, latestStatus.statut, latestStatus.dateStatut) FROM Candidat c JOIN c.statuts latestStatus WHERE latestStatus.dateStatut = (SELECT MAX(s.dateStatut) FROM c.statuts s) and c.id=:id")
