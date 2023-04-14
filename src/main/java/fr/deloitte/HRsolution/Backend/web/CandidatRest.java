@@ -105,22 +105,6 @@ public class CandidatRest {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping(value = "/joindre/{id}", consumes = "multipart/form-data")
-    public ResponseEntity<Candidat> addDocument(@PathVariable Long id, @RequestBody Document doc) {
-        // Find the Candidat with the given id
-        Optional<Candidat> optionalCandidat = candidatRepository.findById(id);
-        Candidat candidat = optionalCandidat.get();
-        // Update the statuts of the Candidat
-        List<Document> documents = candidat.getDocuments();
-        documents.add(doc);
-        candidat.setDocuments(documents);
-        // Save the updated Candidat to the database
-        candidatRepository.save(candidat);
-        // Return the updated Candidat
-        return ResponseEntity.ok().build();
-    }
-
-    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping(value = "/upload/{id}", consumes = "multipart/form-data")
     public ResponseEntity<Candidat> uploadDocument(@PathVariable Long id, @RequestParam("name") String name, @RequestParam("data") MultipartFile data) {
         // Create a new Document object and set its properties
