@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class PrequalController {
     @Autowired
     private CandidatRepository candidatRepository;
@@ -31,6 +31,7 @@ public class PrequalController {
     public List<Prequal> listPrequals(){
             return prequalRepository.findAll();
     }
+
     @PutMapping(path = "/ajouterprequal/{id}")
     public ResponseEntity<Prequal> createprequal(@PathVariable(name = "id") Long id, @RequestBody Prequal newprequal){
         Optional<Candidat> optionalCandidate = candidatRepository.findById(id);
