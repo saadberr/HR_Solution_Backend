@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +32,7 @@ public class PrequalController {
             return prequalRepository.findAll();
     }
 
-    @PutMapping (path = "/ajouterprequal/{id}")
+    @PutMapping(path = "/ajouterprequal/{id}")
     public ResponseEntity<Prequal> createprequal(@PathVariable(name = "id") Long id, @RequestBody Prequal newprequal){
         Optional<Candidat> optionalCandidate = candidatRepository.findById(id);
         Candidat candidat = optionalCandidate.get();
