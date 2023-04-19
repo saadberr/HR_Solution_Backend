@@ -24,4 +24,8 @@ public class ListeResponse {
     public Date dateSourcing;
     public String statut;
     public Date dateStatut;
+
+    private Integer sanet;
+    private Integer psnet;
+    private String preavis;
 }
