@@ -17,7 +17,8 @@ public class StatutCandidat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String statut;
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dateStatut;
 
     /*@ManyToOne
