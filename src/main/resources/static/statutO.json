@@ -1,0 +1,201 @@
+[{
+  "id": 1,
+  "offreStatut": "Intégration",
+  "offreDateStatut": "4/4/2023"
+}, {
+  "id": 2,
+  "offreStatut": "Offre acceptée",
+  "offreDateStatut": "24/3/2023"
+}, {
+  "id": 3,
+  "offreStatut": "En cours de réfléxion",
+  "offreDateStatut": "13/4/2023"
+}, {
+  "id": 4,
+  "offreStatut": "En cours de validation",
+  "offreDateStatut": "27/3/2023"
+}, {
+  "id": 5,
+  "offreStatut": "En cours de réfléxion",
+  "offreDateStatut": "11/3/2023"
+}, {
+  "id": 6,
+  "offreStatut": "En cours de réfléxion",
+  "offreDateStatut": "31/3/2023"
+}, {
+  "id": 7,
+  "offreStatut": "Désistement",
+  "offreDateStatut": "14/3/2023"
+}, {
+  "id": 8,
+  "offreStatut": "Intégration",
+  "offreDateStatut": "30/3/2023"
+}, {
+  "id": 9,
+  "offreStatut": "Intégration",
+  "offreDateStatut": "28/3/2023"
+}, {
+  "id": 10,
+  "offreStatut": "En cours de réfléxion",
+  "offreDateStatut": "9/4/2023"
+}, {
+  "id": 11,
+  "offreStatut": "Intégration",
+  "offreDateStatut": "9/3/2023"
+}, {
+  "id": 12,
+  "offreStatut": "En cours de validation",
+  "offreDateStatut": "30/3/2023"
+}, {
+  "id": 13,
+  "offreStatut": "Désistement",
+  "offreDateStatut": "4/4/2023"
+}, {
+  "id": 14,
+  "offreStatut": "En cours de réfléxion",
+  "offreDateStatut": "2/4/2023"
+}, {
+  "id": 15,
+  "offreStatut": "Refus propale",
+  "offreDateStatut": "10/4/2023"
+}, {
+  "id": 16,
+  "offreStatut": "Désistement",
+  "offreDateStatut": "25/3/2023"
+}, {
+  "id": 17,
+  "offreStatut": "Intégration",
+  "offreDateStatut": "15/3/2023"
+}, {
+  "id": 18,
+  "offreStatut": "Intégration",
+  "offreDateStatut": "17/4/2023"
+}, {
+  "id": 19,
+  "offreStatut": "Refus propale",
+  "offreDateStatut": "13/3/2023"
+}, {
+  "id": 20,
+  "offreStatut": "Offre acceptée",
+  "offreDateStatut": "18/4/2023"
+}, {
+  "id": 21,
+  "offreStatut": "Intégration",
+  "offreDateStatut": "24/3/2023"
+}, {
+  "id": 22,
+  "offreStatut": "Offre acceptée",
+  "offreDateStatut": "10/3/2023"
+}, {
+  "id": 23,
+  "offreStatut": "Intégration",
+  "offreDateStatut": "2/4/2023"
+}, {
+  "id": 24,
+  "offreStatut": "Intégration",
+  "offreDateStatut": "9/4/2023"
+}, {
+  "id": 25,
+  "offreStatut": "En cours de validation",
+  "offreDateStatut": "29/3/2023"
+}, {
+  "id": 26,
+  "offreStatut": "Désistement",
+  "offreDateStatut": "9/4/2023"
+}, {
+  "id": 27,
+  "offreStatut": "En cours de validation",
+  "offreDateStatut": "23/3/2023"
+}, {
+  "id": 28,
+  "offreStatut": "Désistement",
+  "offreDateStatut": "17/3/2023"
+}, {
+  "id": 29,
+  "offreStatut": "Intégration",
+  "offreDateStatut": "24/3/2023"
+}, {
+  "id": 30,
+  "offreStatut": "Intégration",
+  "offreDateStatut": "8/4/2023"
+}, {
+  "id": 31,
+  "offreStatut": "En cours de réfléxion",
+  "offreDateStatut": "15/4/2023"
+}, {
+  "id": 32,
+  "offreStatut": "Offre acceptée",
+  "offreDateStatut": "11/4/2023"
+}, {
+  "id": 33,
+  "offreStatut": "En cours de validation",
+  "offreDateStatut": "23/3/2023"
+}, {
+  "id": 34,
+  "offreStatut": "Refus propale",
+  "offreDateStatut": "15/3/2023"
+}, {
+  "id": 35,
+  "offreStatut": "En cours de validation",
+  "offreDateStatut": "28/3/2023"
+}, {
+  "id": 36,
+  "offreStatut": "Désistement",
+  "offreDateStatut": "15/4/2023"
+}, {
+  "id": 37,
+  "offreStatut": "En cours de validation",
+  "offreDateStatut": "17/3/2023"
+}, {
+  "id": 38,
+  "offreStatut": "Désistement",
+  "offreDateStatut": "6/4/2023"
+}, {
+  "id": 39,
+  "offreStatut": "En cours de réfléxion",
+  "offreDateStatut": "18/4/2023"
+}, {
+  "id": 40,
+  "offreStatut": "Intégration",
+  "offreDateStatut": "14/3/2023"
+}, {
+  "id": 41,
+  "offreStatut": "En cours de validation",
+  "offreDateStatut": "10/3/2023"
+}, {
+  "id": 42,
+  "offreStatut": "Désistement",
+  "offreDateStatut": "3/4/2023"
+}, {
+  "id": 43,
+  "offreStatut": "Refus propale",
+  "offreDateStatut": "17/4/2023"
+}, {
+  "id": 44,
+  "offreStatut": "Désistement",
+  "offreDateStatut": "25/3/2023"
+}, {
+  "id": 45,
+  "offreStatut": "Refus propale",
+  "offreDateStatut": "1/4/2023"
+}, {
+  "id": 46,
+  "offreStatut": "Intégration",
+  "offreDateStatut": "18/3/2023"
+}, {
+  "id": 47,
+  "offreStatut": "Désistement",
+  "offreDateStatut": "29/3/2023"
+}, {
+  "id": 48,
+  "offreStatut": "Désistement",
+  "offreDateStatut": "5/4/2023"
+}, {
+  "id": 49,
+  "offreStatut": "Intégration",
+  "offreDateStatut": "18/4/2023"
+}, {
+  "id": 50,
+  "offreStatut": "Refus propale",
+  "offreDateStatut": "11/3/2023"
+}]
