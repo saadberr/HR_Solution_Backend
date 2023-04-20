@@ -12,10 +12,10 @@ import java.util.List;
 public interface CandidatRepository extends JpaRepository<Candidat, Long> {
 
 
-    @Query("SELECT new fr.deloitte.HRsolution.Backend.dto.ListeResponse(c.id, c.prenom, c.nom, c.email, c.telephone, c.pays, c.practice, c.specialite, c.grade, c.experience, c.source, c.dateSourcing, latestStatus.statut, latestStatus.dateStatut) FROM Candidat c JOIN c.statuts latestStatus WHERE latestStatus.dateStatut = (SELECT MAX(s.dateStatut) FROM c.statuts s) order by c.id asc")
+    @Query("SELECT new fr.deloitte.HRsolution.Backend.dto.ListeResponse(c.id, c.prenom, c.nom, c.email, c.telephone, c.pays, c.practice, c.specialite, c.grade, c.experience, c.source, c.dateSourcing, latestStatus.statut, latestStatus.dateStatut,c.pourcentageAng) FROM Candidat c JOIN c.statuts latestStatus WHERE latestStatus.dateStatut = (SELECT MAX(s.dateStatut) FROM c.statuts s) order by c.id asc")
     public List<ListeResponse> getListe();
 
-    @Query("SELECT new fr.deloitte.HRsolution.Backend.dto.ListeResponse(c.id, c.prenom, c.nom, c.email, c.telephone, c.pays, c.practice, c.specialite, c.grade, c.experience, c.source, c.dateSourcing, latestStatus.statut, latestStatus.dateStatut) FROM Candidat c JOIN c.statuts latestStatus WHERE latestStatus.dateStatut = (SELECT MAX(s.dateStatut) FROM c.statuts s) and c.id=:id")
+    @Query("SELECT new fr.deloitte.HRsolution.Backend.dto.ListeResponse(c.id, c.prenom, c.nom, c.email, c.telephone, c.pays, c.practice, c.specialite, c.grade, c.experience, c.source, c.dateSourcing, latestStatus.statut, latestStatus.dateStatut,c.pourcentageAng) FROM Candidat c JOIN c.statuts latestStatus WHERE latestStatus.dateStatut = (SELECT MAX(s.dateStatut) FROM c.statuts s) and c.id=:id")
     public ListeResponse getOneListe(@Param("id") Long id);
 
     //@Query("SELECT new fr.deloitte.HRsolution.Backend.dto.KanbanResponse(c.id, c.prenom, c.nom, c.email, c.telephone, c.pays, c.practice, c.specialite, c.grade, c.experience, c.source, c.dateSourcing, latestPrequal.resultatPrequal, latestPrequal.datePrequal) FROM Candidat c JOIN c.prequals latestPrequal WHERE latestPrequal.datePrequal = (SELECT MAX(p.datePrequal) FROM c.prequals p)")

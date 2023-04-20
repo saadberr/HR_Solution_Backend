@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "PREQUAL")
@@ -24,22 +25,26 @@ public class Prequal {
     private String commentaire;
     private String niveauFR;
     private String niveauEN;
-    private int sanet;
-    private int psnet;
+    private String typeContratSaPs;
+    private String sanet;
+    private String psnet;
     private String preavis;
     private String avisRH;
     private String resultatPrequal;
 
     // Package/Avantages
-    private int primeAnnuelle;
-    private int primeProjet;
+    private String primePerformance;
+    private String treizieme;
+    private String primeProjet;
     private String autrePrimes;
     private String cimr;
+    //It will store only one value as string when the choice is Non otherwise it will be {compagnie,tauxrembourseement}
     private String assurance;
     private String congesAnnuelles;
     private String modeTravail;
     private String modeSouhaite;
     private String contrat;
+    private String reasons;
 
     public Prequal(Date datePrequal, String commentaire, String niveauFR, String niveauEN, String resultatPrequal){
         this.datePrequal = datePrequal;

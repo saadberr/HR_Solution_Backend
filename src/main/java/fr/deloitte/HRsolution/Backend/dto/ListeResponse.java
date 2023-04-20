@@ -24,4 +24,5 @@ public class ListeResponse {
     public Date dateSourcing;
     public String statut;
     public Date dateStatut;
+    public int pourcentageAng;
 }

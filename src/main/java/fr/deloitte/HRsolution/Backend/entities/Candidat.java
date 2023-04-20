@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "CANDIDAT")
@@ -39,6 +38,8 @@ public class Candidat {
     private String practice;
     private String specialite;
 
+    private int pourcentageAng;
+
     @ManyToOne(targetEntity = Staff.class)
     @JoinColumn(name = "staff_id",referencedColumnName = "id" )
     private Staff staff;
@@ -55,5 +56,8 @@ public class Candidat {
     @JoinColumn(name = "candidat_id", referencedColumnName = "id")
     private List<Prequal> prequals;
 
+    @ManyToOne(targetEntity = Cooptation.class)
+    @JoinColumn(name = "cooptation_id",referencedColumnName = "id" )
+    private Cooptation coopteurs;
 
 }
