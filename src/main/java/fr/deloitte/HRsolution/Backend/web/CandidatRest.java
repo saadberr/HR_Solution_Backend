@@ -2,11 +2,9 @@ package fr.deloitte.HRsolution.Backend.web;
 
 import fr.deloitte.HRsolution.Backend.dto.KanbanResponse;
 import fr.deloitte.HRsolution.Backend.dto.ListeResponse;
-import fr.deloitte.HRsolution.Backend.entities.Candidat;
-import fr.deloitte.HRsolution.Backend.entities.Document;
-import fr.deloitte.HRsolution.Backend.entities.Staff;
-import fr.deloitte.HRsolution.Backend.entities.StatutCandidat;
+import fr.deloitte.HRsolution.Backend.entities.*;
 import fr.deloitte.HRsolution.Backend.repositories.CandidatRepository;
+import fr.deloitte.HRsolution.Backend.repositories.CooptationRepository;
 import fr.deloitte.HRsolution.Backend.repositories.StaffRepository;
 import fr.deloitte.HRsolution.Backend.service.CandidatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +25,8 @@ public class CandidatRest {
     private CandidatRepository candidatRepository;
     @Autowired
     private StaffRepository staffRepository;
-
+    @Autowired
+    private CooptationRepository cooptationRepository;
     @Autowired
     private CandidatService candidatService;
 
@@ -72,9 +71,14 @@ public class CandidatRest {
         if (staff == null) {
             staff = staffRepository.save(newCandidat.getStaff());
         }
-
         newCandidat.setStaff(staff); // set the staff object in the candidat object
-        
+
+        Cooptation cooptation= cooptationRepository.findByNomCoopAndGradeCoop(newCandidat.getCoopteurs().getNomCoop(),newCandidat.getCoopteurs().getGradeCoop());
+        if (cooptation == null) {
+            cooptation = cooptationRepository.save(newCandidat.getCoopteurs());
+        }
+        newCandidat.setCoopteurs(cooptation);
+
         Candidat candidat = candidatRepository.save(newCandidat); // save the Candidat object to the database
         //return ResponseEntity.ok(candidat); // return the saved Candidat object
         return ResponseEntity.ok().build();
@@ -94,8 +98,14 @@ public class CandidatRest {
         if (staff == null) {
             staff = staffRepository.save(updatedCandidate.getStaff());
         }
-
         updatedCandidate.setStaff(staff); // set the staff object in the candidat object
+
+        Cooptation cooptation= cooptationRepository.findByNomCoopAndGradeCoop(updatedCandidate.getCoopteurs().getNomCoop(),updatedCandidate.getCoopteurs().getGradeCoop());
+        if (cooptation == null) {
+            cooptation = cooptationRepository.save(updatedCandidate.getCoopteurs());
+        }
+        updatedCandidate.setCoopteurs(cooptation);
+
         return candidatRepository.findById(id).map(candidat -> {
             candidat.setNom(updatedCandidate.getNom());
             candidat.setPrenom(updatedCandidate.getPrenom());
@@ -115,6 +125,7 @@ public class CandidatRest {
             candidat.setPractice(updatedCandidate.getPractice());
             candidat.setSpecialite(updatedCandidate.getSpecialite());
             candidat.setStaff(updatedCandidate.getStaff());
+            candidat.setCoopteurs(updatedCandidate.getCoopteurs());
             return candidatRepository.save(candidat);
         });
     }
@@ -158,6 +169,29 @@ public class CandidatRest {
         // Save the updated Candidat to the database
         candidatRepository.save(candidat);
         // Return the updated Candidat
+        return ResponseEntity.ok().build();
+
+    }
+    @PutMapping("/modifierPrequal/{id}")
+    public  ResponseEntity<Candidat> updateprequals(@PathVariable Long id, @RequestBody Prequal newprequal){
+        // Find the Candidat with the given id
+        Optional<Candidat> optionalCandidat = candidatRepository.findById(id);
+        Candidat candidat = optionalCandidat.get();
+        // Update the prequal of the Candidat
+        List<Prequal> existingPrequal = candidat.getPrequals();
+        existingPrequal.add(newprequal);
+        candidat.setPrequals(existingPrequal);
+        // Save the updated Candidat to the database
+        candidatRepository.save(candidat);
+        // Return the updated Candidat
+        return ResponseEntity.ok().build();
+    }
+    @PutMapping("/modifierpourcentage/{id}")
+    public ResponseEntity<Candidat> updatePourcentageAng(@PathVariable Long id, @RequestParam int pourcentageAng ){
+        Optional<Candidat> candidatToUpdate = candidatRepository.findById(id);
+        Candidat candidat= candidatToUpdate.get();
+        candidat.setPourcentageAng(pourcentageAng);
+        candidatRepository.save(candidat);
         return ResponseEntity.ok().build();
 
     }

@@ -25,7 +25,11 @@ public class ListeResponse {
     public String statut;
     public Date dateStatut;
 
+    public int pourcentageAng;
+
+
     private Integer sanet;
     private Integer psnet;
     private String preavis;
+
 }
