@@ -47,7 +47,7 @@ public class PrequalController {
 
         // Get status list and add "préqualifié" to it
         List<StatutCandidat> status = candidat.getStatuts();
-        status.add(new StatutCandidat(null, "Préqualifié", new Date()));
+        status.add(new StatutCandidat(null, newprequal.getResultatPrequal(), new Date()));
         candidat.setStatuts(status);
 
         // Save changes
