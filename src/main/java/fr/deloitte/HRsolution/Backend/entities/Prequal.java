@@ -26,8 +26,8 @@ public class Prequal {
     private String niveauFR;
     private String niveauEN;
     private String typeContratSaPs;
-    private String sanet;
-    private String psnet;
+    private int sanet;
+    private int psnet;
     private String preavis;
     private String avisRH;
     private String resultatPrequal;

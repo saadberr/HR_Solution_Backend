@@ -73,7 +73,7 @@ public class MainService {
                 canOffres.add(offre2);
                 Offre of = new Offre(null, canOffres);
 
-                Candidat candidat = new Candidat(null, c.get("nom").textValue(), c.get("prenom").textValue(), c.get("telephone").textValue(), c.get("email").textValue(), c.get("pays").textValue(), c.get("nationalite").textValue(), c.get("genre").textValue(), c.get("ecole").textValue(), c.get("diplome").textValue(), c.get("anneeDiplome").asInt(), c.get("entActuelle").textValue(), c.get("grade").textValue(), c.get("experience").textValue(), new SimpleDateFormat("dd/MM/yyyy").parse(c.get("dateSourcing").textValue()), c.get("source").textValue(), c.get("practice").textValue(), c.get("specialite").textValue(), null, canStatuts, null, canPrequals, of);
+                Candidat candidat = new Candidat(null, c.get("nom").textValue(), c.get("prenom").textValue(), c.get("telephone").textValue(), c.get("email").textValue(), c.get("pays").textValue(), c.get("nationalite").textValue(), c.get("genre").textValue(), c.get("ecole").textValue(), c.get("diplome").textValue(), c.get("anneeDiplome").asInt(), c.get("entActuelle").textValue(), c.get("grade").textValue(), c.get("experience").textValue(), new SimpleDateFormat("dd/MM/yyyy").parse(c.get("dateSourcing").textValue()), c.get("source").textValue(), c.get("practice").textValue(), c.get("specialite").textValue(), 0, null, canStatuts, null, canPrequals, null, of);
 
                 Long[] items = {1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L};
                 int randomIndex = (int) (Math.random() * items.length);
@@ -108,7 +108,7 @@ public class MainService {
                 canOffres.add(offre);
                 Offre of = new Offre(null, canOffres);
 
-                Candidat candidat = new Candidat(null, c.get("nom").textValue(), c.get("prenom").textValue(), c.get("telephone").textValue(), c.get("email").textValue(), c.get("pays").textValue(), c.get("nationalite").textValue(), c.get("genre").textValue(), c.get("ecole").textValue(), c.get("diplome").textValue(), c.get("anneeDiplome").asInt(), c.get("entActuelle").textValue(), c.get("grade").textValue(), c.get("experience").textValue(), new SimpleDateFormat("dd/MM/yyyy").parse(c.get("dateSourcing").textValue()), c.get("source").textValue(), c.get("practice").textValue(), c.get("specialite").textValue(), null, canStatuts, null, canPrequals, of);
+                Candidat candidat = new Candidat(null, c.get("nom").textValue(), c.get("prenom").textValue(), c.get("telephone").textValue(), c.get("email").textValue(), c.get("pays").textValue(), c.get("nationalite").textValue(), c.get("genre").textValue(), c.get("ecole").textValue(), c.get("diplome").textValue(), c.get("anneeDiplome").asInt(), c.get("entActuelle").textValue(), c.get("grade").textValue(), c.get("experience").textValue(), new SimpleDateFormat("dd/MM/yyyy").parse(c.get("dateSourcing").textValue()), c.get("source").textValue(), c.get("practice").textValue(), c.get("specialite").textValue(), 0, null, canStatuts, null, canPrequals, null, of);
 
                 Long[] items = {1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L};
                 int randomIndex = (int) (Math.random() * items.length);
