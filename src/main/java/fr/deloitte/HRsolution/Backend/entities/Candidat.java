@@ -56,8 +56,15 @@ public class Candidat {
     @JoinColumn(name = "candidat_id", referencedColumnName = "id")
     private List<Prequal> prequals;
 
+
     @ManyToOne(targetEntity = Cooptation.class)
     @JoinColumn(name = "cooptation_id",referencedColumnName = "id" )
     private Cooptation coopteurs;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "offre_id", referencedColumnName = "id")
+    private Offre offre;
+
+
 
 }
