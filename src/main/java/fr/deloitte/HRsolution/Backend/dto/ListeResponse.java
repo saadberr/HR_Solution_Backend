@@ -25,7 +25,7 @@ public class ListeResponse {
     public String statut;
     public Date dateStatut;
 
-    public int pourcentageAng;
+    public Integer pourcentageAng;
 
 
     private Integer sanet;
