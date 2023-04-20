@@ -55,5 +55,9 @@ public class Candidat {
     @JoinColumn(name = "candidat_id", referencedColumnName = "id")
     private List<Prequal> prequals;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "offre_id", referencedColumnName = "id")
+    private Offre offre;
+
 
 }
