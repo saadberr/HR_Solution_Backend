@@ -54,4 +54,25 @@ public class PrequalController {
         candidatRepository.save(candidat);
         return ResponseEntity.ok().build();
     }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping("/modifierPrequal/{id}&{pid}")
+    public  ResponseEntity<Candidat> updateprequals(@PathVariable Long id, @PathVariable Long pid, @RequestBody Prequal newprequal){
+        // Find the Candidat with the given id
+        Optional<Candidat> optionalCandidat = candidatRepository.findById(id);
+        Candidat candidat = optionalCandidat.get();
+
+        // Update the prequal of the Candidat
+        List<Prequal> existingPrequal = candidat.getPrequals();
+        existingPrequal.forEach(prequal -> {
+            if(prequal.getId() == pid){
+                prequal = newprequal;
+            }
+        });
+
+        candidat.setPrequals(existingPrequal);
+        // Save the updated Candidat to the database
+        candidatRepository.save(candidat);
+        // Return the updated Candidat
+        return ResponseEntity.ok().build();
+    }
 }

@@ -5,6 +5,7 @@ import fr.deloitte.HRsolution.Backend.dto.ListeResponse;
 import fr.deloitte.HRsolution.Backend.entities.*;
 import fr.deloitte.HRsolution.Backend.repositories.CandidatRepository;
 import fr.deloitte.HRsolution.Backend.repositories.CooptationRepository;
+import fr.deloitte.HRsolution.Backend.repositories.PrequalRepository;
 import fr.deloitte.HRsolution.Backend.repositories.StaffRepository;
 import fr.deloitte.HRsolution.Backend.service.CandidatService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -172,20 +173,7 @@ public class CandidatRest {
         return ResponseEntity.ok().build();
 
     }
-    @PutMapping("/modifierPrequal/{id}")
-    public  ResponseEntity<Candidat> updateprequals(@PathVariable Long id, @RequestBody Prequal newprequal){
-        // Find the Candidat with the given id
-        Optional<Candidat> optionalCandidat = candidatRepository.findById(id);
-        Candidat candidat = optionalCandidat.get();
-        // Update the prequal of the Candidat
-        List<Prequal> existingPrequal = candidat.getPrequals();
-        existingPrequal.add(newprequal);
-        candidat.setPrequals(existingPrequal);
-        // Save the updated Candidat to the database
-        candidatRepository.save(candidat);
-        // Return the updated Candidat
-        return ResponseEntity.ok().build();
-    }
+
     @PutMapping("/modifierpourcentage/{id}")
     public ResponseEntity<Candidat> updatePourcentageAng(@PathVariable Long id, @RequestParam int pourcentageAng ){
         Optional<Candidat> candidatToUpdate = candidatRepository.findById(id);
