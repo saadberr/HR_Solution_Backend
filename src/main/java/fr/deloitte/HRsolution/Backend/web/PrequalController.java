@@ -65,7 +65,26 @@ public class PrequalController {
         List<Prequal> existingPrequal = candidat.getPrequals();
         existingPrequal.forEach(prequal -> {
             if(prequal.getId() == pid){
-                prequal = newprequal;
+                prequal.setCommentaire(newprequal.getCommentaire());
+                prequal.setNiveauFR(newprequal.getNiveauFR());
+                prequal.setNiveauEN(newprequal.getNiveauEN());
+                prequal.setTypeContratSaPs(newprequal.getTypeContratSaPs());
+                prequal.setSanet(newprequal.getSanet());
+                prequal.setPsnet(newprequal.getPsnet());
+                prequal.setPreavis(newprequal.getPreavis());
+                prequal.setPrimePerformance(newprequal.getPrimePerformance());
+                prequal.setTreizieme(newprequal.getTreizieme());
+                prequal.setPrimeProjet(newprequal.getPrimeProjet());
+                prequal.setAutrePrimes(newprequal.getAutrePrimes());
+                prequal.setModeTravail(newprequal.getModeTravail());
+                prequal.setAssurance(newprequal.getAssurance());
+                prequal.setCimr(newprequal.getCimr());
+                prequal.setCongesAnnuelles(newprequal.getCongesAnnuelles());
+                prequal.setModeSouhaite(newprequal.getModeSouhaite());
+                prequal.setContrat(newprequal.getContrat());
+                prequal.setAvisRH(newprequal.getAvisRH());
+                prequal.setResultatPrequal(newprequal.getResultatPrequal());
+                prequal.setReasons(newprequal.getReasons());
             }
         });
 
