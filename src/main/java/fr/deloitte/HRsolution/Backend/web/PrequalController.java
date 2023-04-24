@@ -63,8 +63,13 @@ public class PrequalController {
 
         // Update the prequal of the Candidat
         List<Prequal> existingPrequal = candidat.getPrequals();
+        System.out.println(existingPrequal);
         existingPrequal.forEach(prequal -> {
-            if(prequal.getId() == pid){
+            System.out.println(pid);
+            System.out.println(prequal.getId());
+            if(prequal.getId().equals(pid)){
+                System.out.println(newprequal);
+                System.out.println(prequal);
                 prequal.setCommentaire(newprequal.getCommentaire());
                 prequal.setNiveauFR(newprequal.getNiveauFR());
                 prequal.setNiveauEN(newprequal.getNiveauEN());
