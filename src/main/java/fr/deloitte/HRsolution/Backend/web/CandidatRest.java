@@ -175,7 +175,7 @@ public class CandidatRest {
     }
 
     @PutMapping("/modifierpourcentage/{id}")
-    public ResponseEntity<Candidat> updatePourcentageAng(@PathVariable Long id, @RequestParam int pourcentageAng ){
+    public ResponseEntity<Candidat> updatePourcentageAng(@PathVariable Long id, @RequestParam float pourcentageAng ){
         Optional<Candidat> candidatToUpdate = candidatRepository.findById(id);
         Candidat candidat= candidatToUpdate.get();
         candidat.setPourcentageAng(pourcentageAng);

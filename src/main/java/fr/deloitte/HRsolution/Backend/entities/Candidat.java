@@ -38,7 +38,7 @@ public class Candidat {
     private String practice;
     private String specialite;
 
-    private int pourcentageAng;
+    private float pourcentageAng;
 
     @ManyToOne(targetEntity = Staff.class)
     @JoinColumn(name = "staff_id",referencedColumnName = "id" )
