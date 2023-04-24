@@ -70,6 +70,7 @@ public class PrequalController {
             if(prequal.getId().equals(pid)){
                 System.out.println(newprequal);
                 System.out.println(prequal);
+                prequal.setDatePrequal(newprequal.getDatePrequal());
                 prequal.setCommentaire(newprequal.getCommentaire());
                 prequal.setNiveauFR(newprequal.getNiveauFR());
                 prequal.setNiveauEN(newprequal.getNiveauEN());
