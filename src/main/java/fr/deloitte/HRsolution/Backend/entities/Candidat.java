@@ -65,6 +65,8 @@ public class Candidat {
     @JoinColumn(name = "offre_id", referencedColumnName = "id")
     private Offre offre;
 
-
+    @OneToMany(targetEntity = Entretien.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "candidat_id", referencedColumnName = "id")
+    private List<Entretien> entretiens;
 
 }
