@@ -25,7 +25,7 @@ public interface CandidatRepository extends JpaRepository<Candidat, Long> {
     @Query("SELECT new fr.deloitte.HRsolution.Backend.dto.KanbanResponse(c.id, c.prenom, c.nom, c.email, c.telephone, c.pays, c.practice, c.specialite, c.grade, c.experience, c.source, c.dateSourcing, latestStatus.statut, latestStatus.dateStatut, latestPrequal.resultatPrequal, latestPrequal.datePrequal) FROM Candidat c LEFT JOIN c.prequals latestPrequal ON latestPrequal.datePrequal = (SELECT MAX(p.datePrequal) FROM c.prequals p) JOIN c.statuts latestStatus WHERE latestStatus.id = (SELECT MAX(s.id) FROM c.statuts s)")
     public List<KanbanResponse> getKanban();
 
-    @Query("SELECT new fr.deloitte.HRsolution.Backend.dto.OffreListe(c.id, c.prenom, c.nom, c.email, c.telephone, c.pays, c.practice, c.specialite, c.grade, o.statut, o.raison, o.dateStatut) FROM Candidat c JOIN c.offre.statutOffres o WHERE o.id = (SELECT MAX(o2.id) FROM c.offre.statutOffres o2)")
+    @Query("SELECT new fr.deloitte.HRsolution.Backend.dto.OffreListe(c.id, c.prenom, c.nom, c.email, c.telephone, c.pays, c.practice, c.specialite, c.grade, c.dateSourcing, o.statut, o.raison, o.dateStatut) FROM Candidat c JOIN c.offre.statutOffres o WHERE o.id = (SELECT MAX(o2.id) FROM c.offre.statutOffres o2)")
     //@Query("SELECT new fr.deloitte.HRsolution.Backend.dto.OffreListe(c.id, c.prenom, c.nom, c.email, c.telephone, c.pays, c.practice, c.specialite, c.grade, c.offre) FROM Candidat c WHERE c.offre IS NOT NULL")
     public List<OffreListe> getOffre();
 

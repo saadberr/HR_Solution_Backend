@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000" , methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
@@ -141,6 +139,26 @@ public class CandidatRest {
         List<StatutCandidat> exStatuts = candidat.getStatuts();
         exStatuts.add(statut);
         candidat.setStatuts(exStatuts);
+
+        // what if statut == Proposition
+        if(statut.getStatut().equals("Proposition")){
+            // Find the offer
+            Offre offre = candidat.getOffre();
+            if (offre == null){
+                List<StatutOffre> statutOffres = new ArrayList<>();
+                statutOffres.add(new StatutOffre(null, "Offre en cours de validation", null, new Date()));
+                Offre newOffre = new Offre(null, statutOffres);
+                candidat.setOffre(newOffre);
+            }
+            else {
+                // Update the statuts of the Candidat
+                List<StatutOffre> exOffres = offre.getStatutOffres();
+                exOffres.add(new StatutOffre(null, "Offre en cours de validation", null, new Date()));
+                offre.setStatutOffres(exOffres);
+                candidat.setOffre(offre);
+            }
+        }
+
         // Save the updated Candidat to the database
         candidatRepository.save(candidat);
         // Return the updated Candidat
