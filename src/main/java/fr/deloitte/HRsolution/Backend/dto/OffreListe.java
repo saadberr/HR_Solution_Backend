@@ -20,6 +20,7 @@ public class OffreListe {
     public String practice;
     public String specialite;
     public String grade;
+    public Date dateSourcing;
 
     //public Offre offre;
     public String statut;
