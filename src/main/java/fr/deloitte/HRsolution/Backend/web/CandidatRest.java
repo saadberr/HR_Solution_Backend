@@ -146,14 +146,14 @@ public class CandidatRest {
             Offre offre = candidat.getOffre();
             if (offre == null){
                 List<StatutOffre> statutOffres = new ArrayList<>();
-                statutOffres.add(new StatutOffre(null, "Offre en cours de validation", null, new Date()));
+                statutOffres.add(new StatutOffre(null, "En cours de validation", null, new Date()));
                 Offre newOffre = new Offre(null, statutOffres);
                 candidat.setOffre(newOffre);
             }
             else {
                 // Update the statuts of the Candidat
                 List<StatutOffre> exOffres = offre.getStatutOffres();
-                exOffres.add(new StatutOffre(null, "Offre en cours de validation", null, new Date()));
+                exOffres.add(new StatutOffre(null, "En cours de validation", null, new Date()));
                 offre.setStatutOffres(exOffres);
                 candidat.setOffre(offre);
             }
