@@ -42,4 +42,23 @@ public class EntretienController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping(path = "/planifierentretienparemail")
+    public ResponseEntity<Entretien> createentretienparemail(@RequestBody Entretien newentretien,@RequestParam String candidatEmail){
+        // Get the candidate
+        Optional<Candidat> optionalCandidate = candidatRepository.findByEmail(candidatEmail);
+        Candidat candidat = optionalCandidate.get();
+
+        // Get entretiens list and add the new entretien to it
+        List<Entretien> entretiens = candidat.getEntretiens();
+        entretiens.add(newentretien);
+        candidat.setEntretiens(entretiens);
+
+        // Set interviewers list for the new entretien
+        List<String> interviewers = newentretien.getRecruteurs();
+        newentretien.setRecruteurs(interviewers);
+
+        // Save changes
+        candidatRepository.save(candidat);
+        return ResponseEntity.ok().build();
+    }
 }

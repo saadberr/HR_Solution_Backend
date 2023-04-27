@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CandidatRepository extends JpaRepository<Candidat, Long> {
 
@@ -29,4 +30,5 @@ public interface CandidatRepository extends JpaRepository<Candidat, Long> {
     //@Query("SELECT new fr.deloitte.HRsolution.Backend.dto.OffreListe(c.id, c.prenom, c.nom, c.email, c.telephone, c.pays, c.practice, c.specialite, c.grade, c.offre) FROM Candidat c WHERE c.offre IS NOT NULL")
     public List<OffreListe> getOffre();
 
+    Optional<Candidat> findByEmail(String candidatEmail);
 }
