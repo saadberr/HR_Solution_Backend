@@ -66,21 +66,19 @@ public class CandidatRest {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path = "/ajouter")
     public ResponseEntity<Candidat> create(@RequestBody Candidat newCandidat){
-        System.out.println(newCandidat);
-        System.out.println("--------");
-        System.out.println(newCandidat.getCooptation());
+
         Staff staff = staffRepository.findByNomAndPrenom(newCandidat.getStaff().getNom(), newCandidat.getStaff().getPrenom());
         if (staff == null) {
             staff = staffRepository.save(newCandidat.getStaff());
         }
-        newCandidat.setStaff(staff); // set the staff object in the candidat object
+
 
         /*
         Cooptation cooptation= cooptationRepository.findByNomCoopteurAndPracticeCoopteur(newCandidat.getCooptation().getNomCoopteur(),newCandidat.getCooptation().getPracticeCoopteur());
         if (cooptation == null) {
             cooptation = cooptationRepository.save(newCandidat.getCooptation());
         }
-        newCandidat.setCooptation(cooptation);
+
 
          */
 
