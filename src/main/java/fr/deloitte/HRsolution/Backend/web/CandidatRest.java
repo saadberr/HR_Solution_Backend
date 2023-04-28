@@ -67,9 +67,29 @@ public class CandidatRest {
     @PostMapping(path = "/ajouter")
     public ResponseEntity<Candidat> create(@RequestBody Candidat newCandidat){
 
-        Staff staff = staffRepository.findByNomAndPrenom(newCandidat.getStaff().getNom(), newCandidat.getStaff().getPrenom());
-        if (staff == null) {
-            staff = staffRepository.save(newCandidat.getStaff());
+        if(newCandidat.getStaff()!=null){
+            if(newCandidat.getStaff().getPrenom()!=null && newCandidat.getStaff().getNom()!=null){
+                Staff staff = staffRepository.findByNomAndPrenom(newCandidat.getStaff().getNom(), newCandidat.getStaff().getPrenom());
+                if (staff == null) {
+                    staff = staffRepository.save(newCandidat.getStaff());
+                }
+                newCandidat.setStaff(staff); // set the staff object in the candidat object
+            } else if (newCandidat.getStaff().getPrenom()==null) {
+                Staff staff = staffRepository.findByNom(newCandidat.getStaff().getNom());
+                if (staff == null) {
+                    staff = staffRepository.save(newCandidat.getStaff());
+                }
+                newCandidat.setStaff(staff); // set the staff object in the candidat object
+            } else if (newCandidat.getStaff().getNom()==null) {
+                Staff staff = staffRepository.findByPrenom(newCandidat.getStaff().getPrenom());
+                if (staff == null) {
+                    staff = staffRepository.save(newCandidat.getStaff());
+                }
+                newCandidat.setStaff(staff); // set the staff object in the candidat object
+            }
+
+        }else{
+            newCandidat.setStaff(null);
         }
 
 
@@ -96,17 +116,45 @@ public class CandidatRest {
 
     @PutMapping(path="/modifierCandidat/{id}")
     public Optional<Candidat> updatingCandidate(@PathVariable("id") Long id, @RequestBody Candidat updatedCandidate) {
-        Staff staff = staffRepository.findByNomAndPrenom(updatedCandidate.getStaff().getNom(), updatedCandidate.getStaff().getPrenom());
+        /*Staff staff = staffRepository.findByNomAndPrenom(updatedCandidate.getStaff().getNom(), updatedCandidate.getStaff().getPrenom());
         if (staff == null) {
             staff = staffRepository.save(updatedCandidate.getStaff());
         }
-        updatedCandidate.setStaff(staff); // set the staff object in the candidat object
+        updatedCandidate.setStaff(staff); // set the staff object in the candidat object*/
 
-        Cooptation cooptation= cooptationRepository.findByNomCoopteurAndPracticeCoopteur(updatedCandidate.getCooptation().getNomCoopteur(),updatedCandidate.getCooptation().getPracticeCoopteur());
-        if (cooptation == null) {
-            cooptation = cooptationRepository.save(updatedCandidate.getCooptation());
+        if(updatedCandidate.getStaff()!=null){
+            if(updatedCandidate.getStaff().getPrenom()!=null && updatedCandidate.getStaff().getNom()!=null){
+                Staff staff = staffRepository.findByNomAndPrenom(updatedCandidate.getStaff().getNom(), updatedCandidate.getStaff().getPrenom());
+                if (staff == null) {
+                    staff = staffRepository.save(updatedCandidate.getStaff());
+                }
+                updatedCandidate.setStaff(staff); // set the staff object in the candidat object
+            } else if (updatedCandidate.getStaff().getPrenom()==null) {
+                Staff staff = staffRepository.findByNom(updatedCandidate.getStaff().getNom());
+                if (staff == null) {
+                    staff = staffRepository.save(updatedCandidate.getStaff());
+                }
+                updatedCandidate.setStaff(staff); // set the staff object in the candidat object
+            } else if (updatedCandidate.getStaff().getNom()==null) {
+                Staff staff = staffRepository.findByPrenom(updatedCandidate.getStaff().getPrenom());
+                if (staff == null) {
+                    staff = staffRepository.save(updatedCandidate.getStaff());
+                }
+                updatedCandidate.setStaff(staff); // set the staff object in the candidat object
+            }
+
+        }else{
+            updatedCandidate.setStaff(null);
         }
-        updatedCandidate.setCooptation(cooptation);
+
+        if (updatedCandidate.getCooptation()!=null){
+            Cooptation cooptation= cooptationRepository.findByNomCoopteurAndPracticeCoopteur(updatedCandidate.getCooptation().getNomCoopteur(),updatedCandidate.getCooptation().getPracticeCoopteur());
+            if (cooptation == null) {
+                cooptation = cooptationRepository.save(updatedCandidate.getCooptation());
+            }
+            updatedCandidate.setCooptation(cooptation);
+        }
+
 
         return candidatRepository.findById(id).map(candidat -> {
             candidat.setNom(updatedCandidate.getNom());
