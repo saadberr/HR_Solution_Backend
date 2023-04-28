@@ -6,11 +6,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "ENTRETIEN")
-@Data@AllArgsConstructor@NoArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor
 public class Entretien {
 
     @Id
@@ -24,4 +25,6 @@ public class Entretien {
     private String commentaire;
     @ElementCollection
     private List<String> recruteurs;
+
+
 }
