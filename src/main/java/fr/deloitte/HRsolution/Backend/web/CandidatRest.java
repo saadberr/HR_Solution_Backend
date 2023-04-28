@@ -66,17 +66,22 @@ public class CandidatRest {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path = "/ajouter")
     public ResponseEntity<Candidat> create(@RequestBody Candidat newCandidat){
-        Staff staff = staffRepository.findByNomAndPrenom(newCandidat.getStaff().getNom(), newCandidat.getStaff().getPrenom());
-        if (staff == null) {
-            staff = staffRepository.save(newCandidat.getStaff());
+        if(newCandidat.getStaff()!=null){
+            Staff staff = staffRepository.findByNomAndPrenom(newCandidat.getStaff().getNom(), newCandidat.getStaff().getPrenom());
+            if (staff == null) {
+                staff = staffRepository.save(newCandidat.getStaff());
+            }
+            newCandidat.setStaff(staff); // set the staff object in the candidat object
         }
-        newCandidat.setStaff(staff); // set the staff object in the candidat object
 
-        Cooptation cooptation= cooptationRepository.findByNomCoopteurAndPracticeCoopteur(newCandidat.getCooptation().getNomCoopteur(),newCandidat.getCooptation().getPracticeCoopteur());
-        if (cooptation == null) {
-            cooptation = cooptationRepository.save(newCandidat.getCooptation());
+        if(newCandidat.getCooptation()!=null){
+            Cooptation cooptation= cooptationRepository.findByNomCoopteurAndPracticeCoopteur(newCandidat.getCooptation().getNomCoopteur(),newCandidat.getCooptation().getPracticeCoopteur());
+            if (cooptation == null) {
+                cooptation = cooptationRepository.save(newCandidat.getCooptation());
+            }
+            newCandidat.setCooptation(cooptation);
         }
-        newCandidat.setCooptation(cooptation);
+
 
         Candidat candidat = candidatRepository.save(newCandidat); // save the Candidat object to the database
         //return ResponseEntity.ok(candidat); // return the saved Candidat object
