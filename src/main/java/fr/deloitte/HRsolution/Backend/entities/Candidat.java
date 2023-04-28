@@ -57,7 +57,7 @@ public class Candidat {
     private List<Prequal> prequals;
 
 
-    @OneToOne(targetEntity = Cooptation.class)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cooptation_id",referencedColumnName = "id" )
     private Cooptation cooptation;
 
