@@ -72,11 +72,11 @@ public class CandidatRest {
         }
         newCandidat.setStaff(staff); // set the staff object in the candidat object
 
-        Cooptation cooptation= cooptationRepository.findByNomCoopAndGradeCoop(newCandidat.getCoopteurs().getNomCoop(),newCandidat.getCoopteurs().getGradeCoop());
+        Cooptation cooptation= cooptationRepository.findByNomCoopteurAndPracticeCoopteur(newCandidat.getCooptation().getNomCoopteur(),newCandidat.getCooptation().getPracticeCoopteur());
         if (cooptation == null) {
-            cooptation = cooptationRepository.save(newCandidat.getCoopteurs());
+            cooptation = cooptationRepository.save(newCandidat.getCooptation());
         }
-        newCandidat.setCoopteurs(cooptation);
+        newCandidat.setCooptation(cooptation);
 
         Candidat candidat = candidatRepository.save(newCandidat); // save the Candidat object to the database
         //return ResponseEntity.ok(candidat); // return the saved Candidat object
@@ -99,11 +99,11 @@ public class CandidatRest {
         }
         updatedCandidate.setStaff(staff); // set the staff object in the candidat object
 
-        Cooptation cooptation= cooptationRepository.findByNomCoopAndGradeCoop(updatedCandidate.getCoopteurs().getNomCoop(),updatedCandidate.getCoopteurs().getGradeCoop());
+        Cooptation cooptation= cooptationRepository.findByNomCoopteurAndPracticeCoopteur(updatedCandidate.getCooptation().getNomCoopteur(),updatedCandidate.getCooptation().getPracticeCoopteur());
         if (cooptation == null) {
-            cooptation = cooptationRepository.save(updatedCandidate.getCoopteurs());
+            cooptation = cooptationRepository.save(updatedCandidate.getCooptation());
         }
-        updatedCandidate.setCoopteurs(cooptation);
+        updatedCandidate.setCooptation(cooptation);
 
         return candidatRepository.findById(id).map(candidat -> {
             candidat.setNom(updatedCandidate.getNom());
@@ -124,7 +124,7 @@ public class CandidatRest {
             candidat.setPractice(updatedCandidate.getPractice());
             candidat.setSpecialite(updatedCandidate.getSpecialite());
             candidat.setStaff(updatedCandidate.getStaff());
-            candidat.setCoopteurs(updatedCandidate.getCoopteurs());
+            candidat.setCooptation(updatedCandidate.getCooptation());
             return candidatRepository.save(candidat);
         });
     }

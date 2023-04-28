@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CooptationRepository extends JpaRepository<Cooptation, Long> {
 
-    Cooptation findByNomCoopAndGradeCoop(String nomCoop, String gradeCoop);
+    Cooptation findByNomCoopteurAndPracticeCoopteur(String nomCoopteur, String practiceCoopteur);
 }

@@ -10,18 +10,17 @@ import java.util.Date;
 
 @Entity
 @Table(name = "COOPTATION")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-
+@Data @AllArgsConstructor @NoArgsConstructor
 public class Cooptation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomCoop;
-    private String gradeCoop;
+    private String nomCoopteur;
+    private String practiceCoopteur;
+
     private int montant;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private Date dateIntegration;
@@ -34,6 +33,6 @@ public class Cooptation {
     @Temporal(TemporalType.DATE)
     private Date dateDeuxiemeVers;
 
-    private int primeCooptation;
+    private int statutCooptation;
 
 }
