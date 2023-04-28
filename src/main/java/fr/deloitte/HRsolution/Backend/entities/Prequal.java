@@ -40,7 +40,7 @@ public class Prequal {
     private String cimr;
     //It will store only one value as string when the choice is Non otherwise it will be {compagnie,tauxrembourseement}
     private String assurance;
-    private String congesAnnuelles;
+    private int congesAnnuelles;
     private String modeTravail;
     private String modeSouhaite;
     private String contrat;
