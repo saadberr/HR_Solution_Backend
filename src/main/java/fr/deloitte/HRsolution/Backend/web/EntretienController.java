@@ -61,4 +61,21 @@ public class EntretienController {
         candidatRepository.save(candidat);
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping("/modifierentretien/{id}&{pid}")
+    public ResponseEntity<Candidat> updateStatutEntetien(@PathVariable Long id,@PathVariable Long pid, @RequestParam String etatEntretien, @RequestParam String commentaireEntretien ){
+        Optional<Candidat> candidatToUpdate = candidatRepository.findById(id);
+        Candidat candidat= candidatToUpdate.get();
+        List<Entretien> existingEntretiens=candidat.getEntretiens();
+        existingEntretiens.forEach(entretien -> {
+            if (entretien.getId().equals(pid)){
+                entretien.setEtat(etatEntretien);
+                entretien.setCommentaire(commentaireEntretien);
+            }
+        });
+        candidat.setEntretiens(existingEntretiens);
+        candidatRepository.save(candidat);
+        return ResponseEntity.ok().build();
+
+    }
 }
