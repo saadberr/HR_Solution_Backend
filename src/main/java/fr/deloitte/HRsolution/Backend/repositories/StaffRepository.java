@@ -11,4 +11,8 @@ public interface StaffRepository extends JpaRepository<Staff, Long> {
     @Query("SELECT DISTINCT s.id, s.nom, s.prenom ,s.grade FROM Staff s")
     List<Object[]> findDistinctIdAndNomAndPrenomAndGrade();
     Staff findByNomAndPrenom(String nom, String prenom);
+
+    Staff findByNom(String nom);
+
+    Staff findByPrenom(String prenom);
 }
