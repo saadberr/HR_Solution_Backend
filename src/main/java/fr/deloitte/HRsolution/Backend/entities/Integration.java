@@ -8,16 +8,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "STATUT_OFFRE")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class StatutOffre {
+@Table(name = "INTEGRATION")
+@Data @AllArgsConstructor @NoArgsConstructor
+public class Integration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String statut;
-    private String raison;
     @Temporal(TemporalType.DATE)
-    private Date dateStatut;
+    private Date dateIntegration;
 }

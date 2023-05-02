@@ -1,5 +1,6 @@
 package fr.deloitte.HRsolution.Backend.dto;
 
+import fr.deloitte.HRsolution.Backend.entities.Integration;
 import fr.deloitte.HRsolution.Backend.entities.Offre;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,8 +23,9 @@ public class OffreListe {
     public String grade;
     public Date dateSourcing;
 
-    //public Offre offre;
     public String statut;
     public String raison;
     public Date dateStatut;
+
+    public Offre offre;
 }
