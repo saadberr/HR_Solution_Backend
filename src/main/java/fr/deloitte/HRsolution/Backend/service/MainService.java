@@ -41,6 +41,7 @@ public class MainService {
         JsonNode offres2 = mapper.readTree(new File("src/main/resources/static/statutO2.json"));
         JsonNode entretiens = mapper.readTree(new File("src/main/resources/static/entretien.json"));
         JsonNode entretiens2 = mapper.readTree(new File("src/main/resources/static/entretien2.json"));
+        JsonNode cooptation = mapper.readTree(new File("src/main/resources/static/cooptation.json"));
 
         for (int i = 0; i < staffs.size(); i++){
             JsonNode sf = staffs.get(i);
@@ -150,6 +151,7 @@ public class MainService {
                 JsonNode o2 = offres2.get(i);
                 JsonNode e = entretiens.get(i);
                 JsonNode e2 = entretiens2.get(i);
+                JsonNode cop = cooptation.get(i);
 
                 // Do something with the current elements
                 List<StatutCandidat> canStatuts = new ArrayList<>();
@@ -170,7 +172,7 @@ public class MainService {
                 StatutOffre offre2 = new StatutOffre(null, o2.get("offreStatut").textValue(), null, new SimpleDateFormat("dd/MM/yyyy").parse(o2.get("offreDateStatut").textValue()));
                 canOffres.add(offre);
                 canOffres.add(offre2);
-                Offre of = new Offre(null, canOffres);
+                Offre of = new Offre(null, canOffres, null);
 
                 List<Entretien> canEntretiens = new ArrayList<>();
                 Entretien interview = new Entretien( null,e.get("typeEntretien").textValue(), LocalDateTime.parse(e.get("dateheureEntretien").asText(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")), e.get("etat").textValue(), e.get("commentaire").textValue(), Arrays.asList(e.get("recruteurs").textValue().split("\\s*,\\s*")));
@@ -181,8 +183,9 @@ public class MainService {
 /*
                 canEntretiens.add(interview2);
 */
+                Cooptation cp = new Cooptation(null, cop.get("nomCopteur").textValue(), cop.get("practiceCoopteur").textValue(), cop.get("montant").asInt(), new SimpleDateFormat("dd/MM/yyyy").parse(cop.get("dateIntegration").textValue()), new SimpleDateFormat("dd/MM/yyyy").parse(cop.get("datePremierVers").textValue()), new SimpleDateFormat("dd/MM/yyyy").parse(cop.get("dateDeuxiemeVers").textValue()), cop.get("statutCooptation").asInt());
 
-                Candidat candidat = new Candidat(null, c.get("nom").textValue(), c.get("prenom").textValue(), c.get("telephone").textValue(), c.get("email").textValue(), c.get("pays").textValue(), c.get("nationalite").textValue(), c.get("genre").textValue(), c.get("ecole").textValue(), c.get("diplome").textValue(), c.get("anneeDiplome").asInt(), c.get("entActuelle").textValue(), c.get("grade").textValue(), c.get("experience").textValue(), new SimpleDateFormat("dd/MM/yyyy").parse(c.get("dateSourcing").textValue()), c.get("source").textValue(), c.get("practice").textValue(), c.get("specialite").textValue(), 0, null, canStatuts, null, canPrequals, null, of,canEntretiens);
+                Candidat candidat = new Candidat(null, c.get("nom").textValue(), c.get("prenom").textValue(), c.get("telephone").textValue(), c.get("email").textValue(), c.get("pays").textValue(), c.get("nationalite").textValue(), c.get("genre").textValue(), c.get("ecole").textValue(), c.get("diplome").textValue(), c.get("anneeDiplome").asInt(), c.get("entActuelle").textValue(), c.get("grade").textValue(), c.get("experience").textValue(), new SimpleDateFormat("dd/MM/yyyy").parse(c.get("dateSourcing").textValue()), "Cooptation", c.get("practice").textValue(), c.get("specialite").textValue(), 0, null, canStatuts, null, canPrequals, cp, of,canEntretiens);
 
                 Long[] items = {1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L};
                 int randomIndex = (int) (Math.random() * items.length);
@@ -215,7 +218,7 @@ public class MainService {
                 List<StatutOffre> canOffres = new ArrayList<>();
                 StatutOffre offre = new StatutOffre(null, o.get("offreStatut").textValue(), null, new SimpleDateFormat("dd/MM/yyyy").parse(o.get("offreDateStatut").textValue()));
                 canOffres.add(offre);
-                Offre of = new Offre(null, canOffres);
+                Offre of = new Offre(null, canOffres, null);
 
                 Candidat candidat = new Candidat(null, c.get("nom").textValue(), c.get("prenom").textValue(), c.get("telephone").textValue(), c.get("email").textValue(), c.get("pays").textValue(), c.get("nationalite").textValue(), c.get("genre").textValue(), c.get("ecole").textValue(), c.get("diplome").textValue(), c.get("anneeDiplome").asInt(), c.get("entActuelle").textValue(), c.get("grade").textValue(), c.get("experience").textValue(), new SimpleDateFormat("dd/MM/yyyy").parse(c.get("dateSourcing").textValue()), c.get("source").textValue(), c.get("practice").textValue(), c.get("specialite").textValue(), 0, null, canStatuts, null, canPrequals, null, of,null);
 

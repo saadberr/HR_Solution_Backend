@@ -150,7 +150,7 @@ public class CandidatRest {
             if (offre == null){
                 List<StatutOffre> statutOffres = new ArrayList<>();
                 statutOffres.add(new StatutOffre(null, "En cours de validation", null, new Date()));
-                Offre newOffre = new Offre(null, statutOffres);
+                Offre newOffre = new Offre(null, statutOffres, null);
                 candidat.setOffre(newOffre);
             }
             else {

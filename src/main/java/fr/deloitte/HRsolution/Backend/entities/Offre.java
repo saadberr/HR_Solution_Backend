@@ -19,4 +19,8 @@ public class Offre {
     @OneToMany(targetEntity = StatutOffre.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "offre_id", referencedColumnName = "id")
     private List<StatutOffre> statutOffres;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "integration_id", referencedColumnName = "id")
+    private Integration integration;
 }
