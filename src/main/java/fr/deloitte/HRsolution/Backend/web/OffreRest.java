@@ -37,11 +37,23 @@ public class OffreRest {
         Offre offre = candidat.getOffre();
         // Update the statuts of the Candidat
         List<StatutOffre> exOffres = offre.getStatutOffres();
-        exOffres.add(statut);
+        exOffres.add(new StatutOffre(null, statut.getStatut(), statut.getRaison(), statut.getDateStatut()));
         offre.setStatutOffres(exOffres);
         candidat.setOffre(offre);
         // Set the integration
-        offre.setIntegration(integration);
+        if(integration == null){
+            offre.setIntegration(null);
+        }
+        else{
+            offre.setIntegration(new Integration(null, integration.getDateIntegration()));
+            // Check if the candidate source is a cooptation to update its dateIntegration field
+            if(candidat.getSource().equals("Cooptation")){
+                Cooptation cop = candidat.getCooptation();
+                cop.setDateIntegration(integration.getDateIntegration());
+                cop.setStatutCooptation(0);
+                candidat.setCooptation(cop);
+            }
+        }
         // Save the updated Candidat to the database
         candidatRepository.save(candidat);
         // Return the updated Candidat
