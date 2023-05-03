@@ -34,5 +34,8 @@ public interface CandidatRepository extends JpaRepository<Candidat, Long> {
     @Query("SELECT new fr.deloitte.HRsolution.Backend.dto.CooptationListe(c.id, c.prenom, c.nom, c.email, c.telephone, c.grade, c.practice, cop.nomCoopteur, cop.practiceCoopteur, cop.montant, cop.dateIntegration, cop.datePremierVers, cop.dateDeuxiemeVers, cop.statutCooptation) FROM Candidat c JOIN c.cooptation cop JOIN c.offre.statutOffres o WHERE o.id = (SELECT MAX(o2.id) FROM c.offre.statutOffres o2) AND o.statut LIKE 'Intégration%' ORDER BY c.id DESC")
     public List<CooptationListe> getCooptation();
 
+    @Query("SELECT new fr.deloitte.HRsolution.Backend.dto.CooptationListe(c.id, c.prenom, c.nom, c.email, c.telephone, c.grade, c.practice, cop.nomCoopteur, cop.practiceCoopteur, cop.montant, cop.dateIntegration, cop.datePremierVers, cop.dateDeuxiemeVers, cop.statutCooptation) FROM Candidat c JOIN c.cooptation cop JOIN c.offre.statutOffres o WHERE o.id = (SELECT MAX(o2.id) FROM c.offre.statutOffres o2) AND o.statut LIKE 'Intégration%' AND c.id=:id")
+    public CooptationListe getOneCooptation(@Param("id") Long id);
+
     Optional<Candidat> findByEmail(String candidatEmail);
 }
