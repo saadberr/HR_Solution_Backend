@@ -2,12 +2,14 @@ package fr.deloitte.HRsolution.Backend.web;
 
 import fr.deloitte.HRsolution.Backend.entities.Candidat;
 import fr.deloitte.HRsolution.Backend.entities.Entretien;
+import fr.deloitte.HRsolution.Backend.entities.StatutCandidat;
 import fr.deloitte.HRsolution.Backend.repositories.CandidatRepository;
 import fr.deloitte.HRsolution.Backend.repositories.EntretienRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 @RestController
@@ -57,6 +59,14 @@ public class EntretienController {
         List<String> interviewers = newentretien.getRecruteurs();
         newentretien.setRecruteurs(interviewers);
 
+        if(newentretien.getTypeEntretien()!=null){
+            // Get status list and add the interview status to it
+            List<StatutCandidat> status = candidat.getStatuts();
+            String statutToUpdate= "Entretien planifié"+" "+ newentretien.getTypeEntretien();
+            status.add(new StatutCandidat(null, statutToUpdate, new Date()));
+            candidat.setStatuts(status);
+        }
+
         // Save changes
         candidatRepository.save(candidat);
         return ResponseEntity.ok().build();
@@ -74,6 +84,12 @@ public class EntretienController {
             }
         });
         candidat.setEntretiens(existingEntretiens);
+
+        // Get status list and add the interview status to it
+        List<StatutCandidat> status = candidat.getStatuts();
+        status.add(new StatutCandidat(null, etatEntretien, new Date()));
+        candidat.setStatuts(status);
+
         candidatRepository.save(candidat);
         return ResponseEntity.ok().build();
 
