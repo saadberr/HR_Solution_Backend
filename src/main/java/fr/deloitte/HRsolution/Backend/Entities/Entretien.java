@@ -1,4 +1,4 @@
-package fr.deloitte.HRsolution.Backend.entities;
+package fr.deloitte.HRsolution.Backend.Entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Entity

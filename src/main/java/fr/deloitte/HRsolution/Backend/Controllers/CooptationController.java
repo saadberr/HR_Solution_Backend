@@ -1,10 +1,9 @@
-package fr.deloitte.HRsolution.Backend.web;
+package fr.deloitte.HRsolution.Backend.Controllers;
 
 import fr.deloitte.HRsolution.Backend.dto.CooptationListe;
-import fr.deloitte.HRsolution.Backend.entities.*;
+import fr.deloitte.HRsolution.Backend.Entities.*;
 import fr.deloitte.HRsolution.Backend.payloads.CooptationStatut;
-import fr.deloitte.HRsolution.Backend.payloads.OffrePayload;
-import fr.deloitte.HRsolution.Backend.repositories.CandidatRepository;
+import fr.deloitte.HRsolution.Backend.Repositories.CandidatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-public class CooptationRest {
+public class CooptationController {
 
     @Autowired
     private CandidatRepository candidatRepository;
@@ -30,15 +29,16 @@ public class CooptationRest {
     }
 
     @PutMapping("/modifierCooptation/{id}")
-    public ResponseEntity<Candidat> updatePourcentageAng(@PathVariable Long id, @RequestBody CooptationStatut request){
+    public ResponseEntity<Candidat> updateStatutCooptation(@PathVariable Long id, @RequestBody CooptationStatut request){
 
         // Find the Candidat with the given id
         Optional<Candidat> optionalCandidat = candidatRepository.findById(id);
         Candidat candidat = optionalCandidat.get();
         // Find the cooptation
-        Cooptation cop = candidat.getCooptation();
-        cop.setStatutCooptation(request.getIntValue());
+        List<Cooptation> cop = candidat.getCooptation();
+        cop.get(0).setStatutCooptation(request.getIntValue());
         candidat.setCooptation(cop);
+
         // Save the updated Candidat to the database
         candidatRepository.save(candidat);
         return ResponseEntity.ok().build();
@@ -51,15 +51,17 @@ public class CooptationRest {
         Optional<Candidat> optionalCandidat = candidatRepository.findById(id);
         Candidat candidat = optionalCandidat.get();
         // Find the cooptation
-        Cooptation cop = candidat.getCooptation();
+        List<Cooptation> cop = candidat.getCooptation();
+        if(!cop.isEmpty()){
+            cop.get(0).setNomCoopteur(cooptation.getNomCoopteur());
+            cop.get(0).setPracticeCoopteur(cooptation.getPracticeCoopteur());
+            cop.get(0).setMontant(cooptation.getMontant());
+            cop.get(0).setDatePremierVers(cooptation.getDatePremierVers());
+            cop.get(0).setDateDeuxiemeVers(cooptation.getDateDeuxiemeVers());
 
-        cop.setNomCoopteur(cooptation.getNomCoopteur());
-        cop.setPracticeCoopteur(cooptation.getPracticeCoopteur());
-        cop.setMontant(cooptation.getMontant());
-        cop.setDatePremierVers(cooptation.getDatePremierVers());
-        cop.setDateDeuxiemeVers(cooptation.getDateDeuxiemeVers());
+            candidat.setCooptation(cop);
+        }
 
-        candidat.setCooptation(cop);
         // Save the updated Candidat to the database
         candidatRepository.save(candidat);
         return ResponseEntity.ok().build();

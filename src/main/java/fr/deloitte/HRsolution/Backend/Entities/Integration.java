@@ -1,24 +1,19 @@
-package fr.deloitte.HRsolution.Backend.entities;
+package fr.deloitte.HRsolution.Backend.Entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
-@Table(name = "DOCUMENT")
+@Table(name = "INTEGRATION")
 @Data @AllArgsConstructor @NoArgsConstructor
-public class Document {
-
+public class Integration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "name")
-    private String name;
-
-    @Lob
-    @Column(columnDefinition="BLOB")
-    private byte[] data;
+    @Temporal(TemporalType.DATE)
+    private Date dateIntegration;
 }

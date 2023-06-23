@@ -1,7 +1,6 @@
-package fr.deloitte.HRsolution.Backend.repositories;
+package fr.deloitte.HRsolution.Backend.Repositories;
 
-import fr.deloitte.HRsolution.Backend.dto.ListeResponse;
-import fr.deloitte.HRsolution.Backend.entities.Staff;
+import fr.deloitte.HRsolution.Backend.Entities.Staff;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

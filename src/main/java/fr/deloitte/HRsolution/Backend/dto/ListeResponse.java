@@ -26,6 +26,7 @@ public class ListeResponse {
     public Date dateStatut;
 
     public float pourcentageAng;
+    public String souspractice;
 
 
     private Integer sanet;

@@ -1,7 +1,5 @@
-package fr.deloitte.HRsolution.Backend.entities;
+package fr.deloitte.HRsolution.Backend.Entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,12 +15,6 @@ public class StatutCandidat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String statut;
-    //@Temporal(TemporalType.TIMESTAMP)
     @Temporal(TemporalType.DATE)
     private Date dateStatut;
-
-    /*@ManyToOne
-    private Candidat candidat;
-
-     */
 }

@@ -1,10 +1,10 @@
-package fr.deloitte.HRsolution.Backend.web;
+package fr.deloitte.HRsolution.Backend.Controllers;
 
-import fr.deloitte.HRsolution.Backend.entities.Candidat;
-import fr.deloitte.HRsolution.Backend.entities.Entretien;
-import fr.deloitte.HRsolution.Backend.entities.StatutCandidat;
-import fr.deloitte.HRsolution.Backend.repositories.CandidatRepository;
-import fr.deloitte.HRsolution.Backend.repositories.EntretienRepository;
+import fr.deloitte.HRsolution.Backend.Entities.Candidat;
+import fr.deloitte.HRsolution.Backend.Entities.Entretien;
+import fr.deloitte.HRsolution.Backend.Entities.StatutCandidat;
+import fr.deloitte.HRsolution.Backend.Repositories.CandidatRepository;
+import fr.deloitte.HRsolution.Backend.Repositories.EntretienRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
