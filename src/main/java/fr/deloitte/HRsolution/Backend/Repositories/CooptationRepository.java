@@ -1,7 +1,6 @@
-package fr.deloitte.HRsolution.Backend.repositories;
+package fr.deloitte.HRsolution.Backend.Repositories;
 
-import fr.deloitte.HRsolution.Backend.entities.Candidat;
-import fr.deloitte.HRsolution.Backend.entities.Cooptation;
+import fr.deloitte.HRsolution.Backend.Entities.Cooptation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CooptationRepository extends JpaRepository<Cooptation, Long> {

@@ -1,11 +1,9 @@
 package fr.deloitte.HRsolution.Backend.dto;
 
-import fr.deloitte.HRsolution.Backend.entities.Integration;
-import fr.deloitte.HRsolution.Backend.entities.Offre;
+import fr.deloitte.HRsolution.Backend.Entities.Offre;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.Date;
 
 @Data

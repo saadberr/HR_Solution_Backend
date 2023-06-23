@@ -1,6 +1,5 @@
-package fr.deloitte.HRsolution.Backend.entities;
+package fr.deloitte.HRsolution.Backend.Entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,7 +30,7 @@ public class Candidat {
     private String entActuelle;
     private String grade;
     private String experience;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+
     @Temporal(TemporalType.DATE)
     private Date dateSourcing;
     private String source;
@@ -39,6 +38,7 @@ public class Candidat {
     private String specialite;
 
     private float pourcentageAng;
+    private String souspractice;
 
     @ManyToOne(targetEntity = Staff.class)
     @JoinColumn(name = "staff_id",referencedColumnName = "id" )
@@ -57,9 +57,9 @@ public class Candidat {
     private List<Prequal> prequals;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Cooptation.class ,cascade = CascadeType.ALL)
     @JoinColumn(name = "cooptation_id",referencedColumnName = "id" )
-    private Cooptation cooptation;
+    private List<Cooptation> cooptation;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "offre_id", referencedColumnName = "id")

@@ -1,12 +1,10 @@
-package fr.deloitte.HRsolution.Backend.entities;
+package fr.deloitte.HRsolution.Backend.Entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "STAFF")
@@ -18,11 +16,5 @@ public class Staff {
     private String nom;
     private String prenom;
     private String grade;
-
-    /*
-
-    @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL)
-    private List<Candidat> candidats;
-    */
 
 }

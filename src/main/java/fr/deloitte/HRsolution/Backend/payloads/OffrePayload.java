@@ -1,7 +1,7 @@
 package fr.deloitte.HRsolution.Backend.payloads;
 
-import fr.deloitte.HRsolution.Backend.entities.Integration;
-import fr.deloitte.HRsolution.Backend.entities.StatutOffre;
+import fr.deloitte.HRsolution.Backend.Entities.Integration;
+import fr.deloitte.HRsolution.Backend.Entities.StatutOffre;
 import lombok.Data;
 
 @Data

@@ -1,13 +1,12 @@
-package fr.deloitte.HRsolution.Backend.web;
+package fr.deloitte.HRsolution.Backend.Controllers;
 
 import fr.deloitte.HRsolution.Backend.dto.KanbanResponse;
 import fr.deloitte.HRsolution.Backend.dto.ListeResponse;
-import fr.deloitte.HRsolution.Backend.entities.*;
-import fr.deloitte.HRsolution.Backend.repositories.CandidatRepository;
-import fr.deloitte.HRsolution.Backend.repositories.CooptationRepository;
-import fr.deloitte.HRsolution.Backend.repositories.PrequalRepository;
-import fr.deloitte.HRsolution.Backend.repositories.StaffRepository;
-import fr.deloitte.HRsolution.Backend.service.CandidatService;
+import fr.deloitte.HRsolution.Backend.Entities.*;
+import fr.deloitte.HRsolution.Backend.Repositories.CandidatRepository;
+import fr.deloitte.HRsolution.Backend.Repositories.CooptationRepository;
+import fr.deloitte.HRsolution.Backend.Repositories.StaffRepository;
+import fr.deloitte.HRsolution.Backend.Services.CandidatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,7 @@ import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000" , methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
-public class CandidatRest {
+public class CandidatController {
 
     @Autowired
     private CandidatRepository candidatRepository;
@@ -92,16 +91,6 @@ public class CandidatRest {
             newCandidat.setStaff(null);
         }
 
-
-        /*
-        Cooptation cooptation= cooptationRepository.findByNomCoopteurAndPracticeCoopteur(newCandidat.getCooptation().getNomCoopteur(),newCandidat.getCooptation().getPracticeCoopteur());
-        if (cooptation == null) {
-            cooptation = cooptationRepository.save(newCandidat.getCooptation());
-        }
-
-
-         */
-
         Candidat candidat = candidatRepository.save(newCandidat); // save the Candidat object to the database
         return ResponseEntity.ok().build();
 
@@ -116,12 +105,6 @@ public class CandidatRest {
 
     @PutMapping(path="/modifierCandidat/{id}")
     public Optional<Candidat> updatingCandidate(@PathVariable("id") Long id, @RequestBody Candidat updatedCandidate) {
-        /*Staff staff = staffRepository.findByNomAndPrenom(updatedCandidate.getStaff().getNom(), updatedCandidate.getStaff().getPrenom());
-        if (staff == null) {
-            staff = staffRepository.save(updatedCandidate.getStaff());
-        }
-        updatedCandidate.setStaff(staff); // set the staff object in the candidat object*/
-
         if(updatedCandidate.getStaff()!=null){
             if(updatedCandidate.getStaff().getPrenom()!=null && updatedCandidate.getStaff().getNom()!=null){
                 Staff staff = staffRepository.findByNomAndPrenom(updatedCandidate.getStaff().getNom(), updatedCandidate.getStaff().getPrenom());
@@ -147,15 +130,6 @@ public class CandidatRest {
             updatedCandidate.setStaff(null);
         }
 
-        if (updatedCandidate.getCooptation()!=null){
-            Cooptation cooptation= cooptationRepository.findByNomCoopteurAndPracticeCoopteur(updatedCandidate.getCooptation().getNomCoopteur(),updatedCandidate.getCooptation().getPracticeCoopteur());
-            if (cooptation == null) {
-                cooptation = cooptationRepository.save(updatedCandidate.getCooptation());
-            }
-            updatedCandidate.setCooptation(cooptation);
-        }
-
-
         return candidatRepository.findById(id).map(candidat -> {
             candidat.setNom(updatedCandidate.getNom());
             candidat.setPrenom(updatedCandidate.getPrenom());
@@ -173,6 +147,7 @@ public class CandidatRest {
             candidat.setDateSourcing(updatedCandidate.getDateSourcing());
             candidat.setSource(updatedCandidate.getSource());
             candidat.setPractice(updatedCandidate.getPractice());
+            candidat.setSouspractice(updatedCandidate.getSouspractice());
             candidat.setSpecialite(updatedCandidate.getSpecialite());
             candidat.setStaff(updatedCandidate.getStaff());
             candidat.setCooptation(updatedCandidate.getCooptation());
@@ -207,6 +182,14 @@ public class CandidatRest {
                 exOffres.add(new StatutOffre(null, "En cours de validation", null, new Date()));
                 offre.setStatutOffres(exOffres);
                 candidat.setOffre(offre);
+            }
+        }
+
+        if(statut.getStatut().equals("Proposition")){
+            if(candidat.getSource().equals("Cooptation") && !candidat.getCooptation().isEmpty()){
+                // Find the cooptation
+                List<Cooptation> cop = candidat.getCooptation();
+                cop.get(0).setStatutCooptation(0);
             }
         }
 
@@ -253,5 +236,21 @@ public class CandidatRest {
 
     }
 
+
+    @PutMapping("/ajoutercoopteurs/{id}")
+    public ResponseEntity<Candidat> updateCandidatCoopteurs(@PathVariable Long id, @RequestBody Cooptation newCoopteur) {
+        // Find the Candidat with the given id
+        Optional<Candidat> optionalCandidat = candidatRepository.findById(id);
+        Candidat candidat = optionalCandidat.get();
+        // Update the statuts of the Candidat
+        List<Cooptation> exCoopteurs = candidat.getCooptation();
+        exCoopteurs.add(newCoopteur);
+        candidat.setCooptation(exCoopteurs);
+
+        // Save the updated Candidat to the database
+        candidatRepository.save(candidat);
+        // Return the updated Candidat
+        return ResponseEntity.ok().build();
+    }
 
 }

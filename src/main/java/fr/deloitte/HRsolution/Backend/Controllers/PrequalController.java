@@ -1,10 +1,10 @@
-package fr.deloitte.HRsolution.Backend.web;
+package fr.deloitte.HRsolution.Backend.Controllers;
 
-import fr.deloitte.HRsolution.Backend.entities.Candidat;
-import fr.deloitte.HRsolution.Backend.entities.Prequal;
-import fr.deloitte.HRsolution.Backend.entities.StatutCandidat;
-import fr.deloitte.HRsolution.Backend.repositories.CandidatRepository;
-import fr.deloitte.HRsolution.Backend.repositories.PrequalRepository;
+import fr.deloitte.HRsolution.Backend.Entities.Candidat;
+import fr.deloitte.HRsolution.Backend.Entities.Prequal;
+import fr.deloitte.HRsolution.Backend.Entities.StatutCandidat;
+import fr.deloitte.HRsolution.Backend.Repositories.CandidatRepository;
+import fr.deloitte.HRsolution.Backend.Repositories.PrequalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -95,6 +95,12 @@ public class PrequalController {
         });
 
         candidat.setPrequals(existingPrequal);
+
+        // Get status list and add "préqualifié" to it
+        List<StatutCandidat> status = candidat.getStatuts();
+        status.add(new StatutCandidat(null, newprequal.getResultatPrequal(), new Date()));
+        candidat.setStatuts(status);
+
         // Save the updated Candidat to the database
         candidatRepository.save(candidat);
         // Return the updated Candidat

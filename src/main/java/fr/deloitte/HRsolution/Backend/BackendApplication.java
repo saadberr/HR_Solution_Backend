@@ -1,7 +1,7 @@
 package fr.deloitte.HRsolution.Backend;
 
 
-import fr.deloitte.HRsolution.Backend.service.MainService;
+import fr.deloitte.HRsolution.Backend.Services.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

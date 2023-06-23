@@ -1,20 +1,20 @@
-package fr.deloitte.HRsolution.Backend.web;
+package fr.deloitte.HRsolution.Backend.Controllers;
 
-import fr.deloitte.HRsolution.Backend.dto.KanbanResponse;
 import fr.deloitte.HRsolution.Backend.dto.OffreListe;
-import fr.deloitte.HRsolution.Backend.entities.*;
+import fr.deloitte.HRsolution.Backend.Entities.*;
 import fr.deloitte.HRsolution.Backend.payloads.OffrePayload;
-import fr.deloitte.HRsolution.Backend.repositories.CandidatRepository;
+import fr.deloitte.HRsolution.Backend.Repositories.CandidatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-public class OffreRest {
+public class OffreController {
 
     @Autowired
     private CandidatRepository candidatRepository;
@@ -25,7 +25,7 @@ public class OffreRest {
     }
 
     @PutMapping("/modifierOffre/{id}")
-    public ResponseEntity<Candidat> updatePourcentageAng(@PathVariable Long id, @RequestBody OffrePayload payload){
+    public ResponseEntity<Candidat> updateOffre(@PathVariable Long id, @RequestBody OffrePayload payload){
         // access the objects from the payload
         StatutOffre statut = payload.getStatut();
         Integration integration = payload.getIntegration();
@@ -48,12 +48,21 @@ public class OffreRest {
             offre.setIntegration(new Integration(null, integration.getDateIntegration()));
             // Check if the candidate source is a cooptation to update its dateIntegration field
             if(candidat.getSource().equals("Cooptation")){
-                Cooptation cop = candidat.getCooptation();
-                cop.setDateIntegration(integration.getDateIntegration());
-                cop.setStatutCooptation(0);
-                candidat.setCooptation(cop);
+                List<Cooptation> cop = candidat.getCooptation();
+                if(!cop.isEmpty()){
+                    // we will update information related to the first coopteur added, he's the one who's going benifit from the cooptation reward
+                    cop.get(0).setDateIntegration(integration.getDateIntegration());
+//                    cop.get(0).setStatutCooptation(0);
+                    candidat.setCooptation(cop);
+                }
+
             }
         }
+
+        List<StatutCandidat> status = candidat.getStatuts();
+        status.add(new StatutCandidat(null, statut.getStatut(), new Date()));
+        candidat.setStatuts(status);
+
         // Save the updated Candidat to the database
         candidatRepository.save(candidat);
         // Return the updated Candidat
